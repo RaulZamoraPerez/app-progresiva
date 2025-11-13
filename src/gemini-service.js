@@ -2,16 +2,14 @@
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-
 const CLAVE_API = "AIzaSyCBpYFtU8QRwYDQnrVBviaYw7alOUlcM4M";
 
-// Inicializar la instancia del cliente Gemini
+//instancia 
 const ia = new GoogleGenerativeAI(CLAVE_API);
-
 
 const MODELO =  "gemini-2.5-flash";
 
-// Guardar la sesión de chat 
+
 let sesionChat = null;
 
 function iniciarSesionChat() {
@@ -26,7 +24,7 @@ function iniciarSesionChat() {
 
 /**
 
- * @param {string} preguntaUsuario - Texto con la pregunta del usuario
+ * @param {string} preguntaUsuario - 
  */
 export async function preguntarAGemini(preguntaUsuario) {
   try {

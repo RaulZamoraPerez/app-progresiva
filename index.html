@@ -1,572 +1,621 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="./icons/favicon.ico">
-    <meta name="theme-color" content="#0099ff">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <link rel="manifest" href="/manifest.json">
-    <title>Bitácora Semanal de Gimnasio - App</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./icons/favicon.ico" />
+    <meta name="theme-color" content="#0099ff" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Gym xd</title>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
     <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-body {
-    font-family: 'Segoe UI', Roboto, Arial, sans-serif !important;
-    background: linear-gradient(135deg, #0a0e27 0%, #141b3d 50%, #0a0e27 100%) !important;
-    color: #e8eaf6 !important;
-    min-height: 100vh !important;
-    padding-bottom: 80px !important;
-}
+      body {
+        font-family: "Segoe UI", Roboto, Arial, sans-serif !important;
+        background: linear-gradient(
+          135deg,
+          #0a0e27 0%,
+          #141b3d 50%,
+          #0a0e27 100%
+        ) !important;
+        color: #e8eaf6 !important;
+        min-height: 100vh !important;
+        padding-bottom: 80px !important;
+      }
 
-#btn5min {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, #00d9ff, #ff2e63);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    z-index: 9999;
-}
+      #btn5min {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #00d9ff, #ff2e63);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        z-index: 9999;
+      }
 
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    background: rgba(25, 32, 56, 0.7);
-    min-height: calc(100vh - 80px);
-}
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        background: rgba(25, 32, 56, 0.7);
+        min-height: calc(100vh - 80px);
+      }
 
-h1 {
-    padding: 30px 20px;
-    text-align: center;
-    background: linear-gradient(135deg, rgba(10, 14, 39, 0.95), rgba(20, 27, 61, 0.95));
-    border-bottom: 3px solid #00d9ff;
-    font-size: 2.2em;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-}
+      h1 {
+        padding: 30px 20px;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          rgba(10, 14, 39, 0.95),
+          rgba(20, 27, 61, 0.95)
+        );
+        border-bottom: 3px solid #00d9ff;
+        font-size: 2.2em;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
 
-#smart-word {
-    color: #ffffff;
-    font-weight: 800;
-}
+      #smart-word {
+        color: #ffffff;
+        font-weight: 800;
+      }
 
-#fit-word {
-    background: linear-gradient(135deg, #00d9ff, #ff2e63);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
-}
+      #fit-word {
+        background: linear-gradient(135deg, #00d9ff, #ff2e63);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+      }
 
-.content-section {
-    padding: 30px 25px;
-    display: none;
-    max-width: 900px;
-    margin: 0 auto;
-}
+      .content-section {
+        padding: 30px 25px;
+        display: none;
+        max-width: 900px;
+        margin: 0 auto;
+      }
 
-.content-section.active {
-    display: block;
-}
+      .content-section.active {
+        display: block;
+      }
 
-.page-title {
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(0, 217, 255, 0.2);
-}
+      .page-title {
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+      }
 
-.page-title h2 {
-    margin: 0;
-    font-size: 2.2em;
-    color: #ffffff;
-}
+      .page-title h2 {
+        margin: 0;
+        font-size: 2.2em;
+        color: #ffffff;
+      }
 
-.session-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
-}
+      .session-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
 
-.info-row {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
+      .info-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
 
-.info-row label {
-    font-size: 0.85em;
-    color: #8892b0;
-    text-transform: uppercase;
-    font-weight: 600;
-}
+      .info-row label {
+        font-size: 0.85em;
+        color: #8892b0;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
 
-.info-row input[readonly] {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid rgba(0, 217, 255, 0.3);
-    color: #ffffff;
-    font-size: 1.1em;
-    padding: 8px 0;
-    font-weight: 600;
-}
+      .info-row input[readonly] {
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid rgba(0, 217, 255, 0.3);
+        color: #ffffff;
+        font-size: 1.1em;
+        padding: 8px 0;
+        font-weight: 600;
+      }
 
-.input-group {
-    margin-bottom: 30px;
-}
+      .input-group {
+        margin-bottom: 30px;
+      }
 
-.input-group label {
-    display: block;
-    margin-bottom: 12px;
-    color: #ffffff;
-    font-weight: 600;
-}
+      .input-group label {
+        display: block;
+        margin-bottom: 12px;
+        color: #ffffff;
+        font-weight: 600;
+      }
 
-.input-group textarea,
-.input-group input[type="text"] {
-    width: 100%;
-    padding: 16px;
-    background: rgba(25, 32, 56, 0.5);
-    border: 2px solid rgba(0, 217, 255, 0.2);
-    border-radius: 10px;
-    color: #e8eaf6;
-    font-size: 15px;
-    font-family: inherit;
-    resize: vertical;
-}
+      .input-group textarea,
+      .input-group input[type="text"] {
+        width: 100%;
+        padding: 16px;
+        background: rgba(25, 32, 56, 0.5);
+        border: 2px solid rgba(0, 217, 255, 0.2);
+        border-radius: 10px;
+        color: #e8eaf6;
+        font-size: 15px;
+        font-family: inherit;
+        resize: vertical;
+      }
 
-.input-group textarea:focus,
-.input-group input[type="text"]:focus {
-    outline: none;
-    background: rgba(25, 32, 56, 0.8);
-    border-color: #00d9ff;
-}
+      .input-group textarea:focus,
+      .input-group input[type="text"]:focus {
+        outline: none;
+        background: rgba(25, 32, 56, 0.8);
+        border-color: #00d9ff;
+      }
 
-.btn-primary {
-    width: 100%;
-    padding: 16px 32px;
-    background: linear-gradient(135deg, #00d9ff, #ff2e63);
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-size: 16px;
-    font-weight: 700;
-    text-transform: uppercase;
-    cursor: pointer;
-    margin-top: 10px;
-}
+      .btn-primary {
+        width: 100%;
+        padding: 16px 32px;
+        background: linear-gradient(135deg, #00d9ff, #ff2e63);
+        border: none;
+        border-radius: 10px;
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin-top: 10px;
+      }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(0, 217, 255, 0.4);
-}
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(0, 217, 255, 0.4);
+      }
 
-.selector-box {
-    background: rgba(25, 32, 56, 0.5);
-    border: 2px solid rgba(0, 217, 255, 0.2);
-    border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 40px;
-}
+      .selector-box {
+        background: rgba(25, 32, 56, 0.5);
+        border: 2px solid rgba(0, 217, 255, 0.2);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 40px;
+      }
 
-.selector-box label {
-    display: block;
-    margin-bottom: 12px;
-    color: #ffffff;
-    font-weight: 600;
-}
+      .selector-box label {
+        display: block;
+        margin-bottom: 12px;
+        color: #ffffff;
+        font-weight: 600;
+      }
 
-.selector-box select {
-    width: 100%;
-    padding: 14px;
-    background: rgba(10, 14, 39, 0.6);
-    border: 2px solid rgba(0, 217, 255, 0.3);
-    border-radius: 10px;
-    color: #e8eaf6;
-    font-size: 15px;
-    cursor: pointer;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
+      .selector-box select {
+        width: 100%;
+        padding: 14px;
+        background: rgba(10, 14, 39, 0.6);
+        border: 2px solid rgba(0, 217, 255, 0.3);
+        border-radius: 10px;
+        color: #e8eaf6;
+        font-size: 15px;
+        cursor: pointer;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
 
-.selector-box select:focus {
-    outline: none;
-    border-color: #00d9ff;
-}
+      .selector-box select:focus {
+        outline: none;
+        border-color: #00d9ff;
+      }
 
-.workout-today h3,
-.week-plan h3 {
-    margin: 0 0 20px 0;
-    padding: 0 0 12px 0;
-    border-bottom: 2px solid rgba(0, 217, 255, 0.2);
-    font-size: 1.4em;
-    color: #ffffff;
-}
+      .workout-today h3,
+      .week-plan h3 {
+        margin: 0 0 20px 0;
+        padding: 0 0 12px 0;
+        border-bottom: 2px solid rgba(0, 217, 255, 0.2);
+        font-size: 1.4em;
+        color: #ffffff;
+      }
 
-.exercises-list,
-.week-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+      .exercises-list,
+      .week-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
 
-.week-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-}
+      .week-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
 
-.plan-note {
-    margin-top: 30px;
-    padding: 15px 20px;
-    background: rgba(0, 217, 255, 0.05);
-    border-left: 3px solid #00d9ff;
-    border-radius: 10px;
-    font-style: italic;
-    color: #8892b0;
-}
+      .plan-note {
+        margin-top: 30px;
+        padding: 15px 20px;
+        background: rgba(0, 217, 255, 0.05);
+        border-left: 3px solid #00d9ff;
+        border-radius: 10px;
+        font-style: italic;
+        color: #8892b0;
+      }
 
-.history-list {
-    background: rgba(25, 32, 56, 0.3);
-    border-radius: 15px;
-    padding: 15px;
-}
+      .history-list {
+        background: rgba(25, 32, 56, 0.3);
+        border-radius: 15px;
+        padding: 15px;
+      }
 
-.history-list ul {
-    list-style: none;
-    padding: 0;
-}
+      .history-list ul {
+        list-style: none;
+        padding: 0;
+      }
 
-.response-box,
-.result-box {
-    margin-top: 30px;
-}
+      .response-box,
+      .result-box {
+        margin-top: 30px;
+      }
 
-.response-box label,
-.result-box label {
-    display: block;
-    margin-bottom: 12px;
-    color: #ffffff;
-    font-weight: 600;
-}
+      .response-box label,
+      .result-box label {
+        display: block;
+        margin-bottom: 12px;
+        color: #ffffff;
+        font-weight: 600;
+      }
 
-#gemini-response-area,
-#coach-status-area {
-    background: rgba(25, 32, 56, 0.5);
-    border: 2px solid rgba(0, 217, 255, 0.2);
-    border-radius: 10px;
-    padding: 20px;
-    min-height: 100px;
-    color: #e8eaf6;
-}
+      #gemini-response-area,
+      #coach-status-area {
+        background: rgba(25, 32, 56, 0.5);
+        border: 2px solid rgba(0, 217, 255, 0.2);
+        border-radius: 10px;
+        padding: 20px;
+        min-height: 100px;
+        color: #e8eaf6;
+      }
 
-.empty-state {
-    color: #8892b0;
-    text-align: center;
-    padding: 20px;
-    font-style: italic;
-}
+      .empty-state {
+        color: #8892b0;
+        text-align: center;
+        padding: 20px;
+        font-style: italic;
+      }
 
-h2 {
-    color: #ffffff;
-}
+      h2 {
+        color: #ffffff;
+      }
 
-h3 {
-    color: #ffffff;
-    margin-top: 30px;
-    margin-bottom: 20px;
-}
+      h3 {
+        color: #ffffff;
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
 
-.nav-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(180deg, rgba(10, 14, 39, 0.95), rgba(20, 27, 61, 0.95));
-    display: flex;
-    justify-content: space-around;
-    padding: 8px 0;
-    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    border-top: 2px solid rgba(0, 217, 255, 0.2);
-}
+      .nav-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(
+          180deg,
+          rgba(10, 14, 39, 0.95),
+          rgba(20, 27, 61, 0.95)
+        );
+        display: flex;
+        justify-content: space-around;
+        padding: 8px 0;
+        box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        border-top: 2px solid rgba(0, 217, 255, 0.2);
+      }
 
-.nav-button {
-    background: none;
-    border: none;
-    color: #8892b0;
-    padding: 8px 12px;
-    cursor: pointer;
-    text-align: center;
-    flex-grow: 1;
-    font-size: 13px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-weight: 600;
-}
+      .nav-button {
+        background: none;
+        border: none;
+        color: #8892b0;
+        padding: 8px 12px;
+        cursor: pointer;
+        text-align: center;
+        flex-grow: 1;
+        font-size: 13px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-weight: 600;
+      }
 
-.nav-button.active {
-    color: #00d9ff;
-    font-weight: 700;
-}
+      .nav-button.active {
+        color: #00d9ff;
+        font-weight: 700;
+      }
 
-.nav-button .icon {
-    display: block;
-    font-size: 26px;
-    margin-bottom: 4px;
-}
+      .nav-button .icon {
+        display: block;
+        font-size: 26px;
+        margin-bottom: 4px;
+      }
 
-.nav-button:hover {
-    color: #e8eaf6;
-}
+      .nav-button:hover {
+        color: #e8eaf6;
+      }
 
-.exercise-card {
-    background: rgba(25, 32, 56, 0.6);
-    border: 1px solid rgba(0, 217, 255, 0.3);
-    border-left: 4px solid #00d9ff;
-    border-radius: 10px;
-    padding: 20px;
-}
+      .exercise-card {
+        background: rgba(25, 32, 56, 0.6);
+        border: 1px solid rgba(0, 217, 255, 0.3);
+        border-left: 4px solid #00d9ff;
+        border-radius: 10px;
+        padding: 20px;
+      }
 
-.exercise-card h4 {
-    color: #ffffff;
-    margin: 0 0 12px 0;
-    font-size: 1.2em;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(0, 217, 255, 0.2);
-}
+      .exercise-card h4 {
+        color: #ffffff;
+        margin: 0 0 12px 0;
+        font-size: 1.2em;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+      }
 
-.series-checklist {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px dashed #2d3561;
-}
+      .series-checklist {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #2d3561;
+      }
 
-.series-item {
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(255, 46, 99, 0.15));
-    padding: 8px 16px;
-    border-radius: 25px;
-    border: 2px solid rgba(0, 217, 255, 0.3);
-    font-size: 0.9em;
-    cursor: pointer;
-    color: #e8eaf6;
-    font-weight: 600;
-}
+      .series-item {
+        display: flex;
+        align-items: center;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 217, 255, 0.15),
+          rgba(255, 46, 99, 0.15)
+        );
+        padding: 8px 16px;
+        border-radius: 25px;
+        border: 2px solid rgba(0, 217, 255, 0.3);
+        font-size: 0.9em;
+        cursor: pointer;
+        color: #e8eaf6;
+        font-weight: 600;
+      }
 
-.series-item:hover {
-    background: linear-gradient(135deg, rgba(0, 217, 255, 0.25), rgba(255, 46, 99, 0.25));
-    border-color: #00d9ff;
-}
+      .series-item:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 217, 255, 0.25),
+          rgba(255, 46, 99, 0.25)
+        );
+        border-color: #00d9ff;
+      }
 
-.series-item input[type="checkbox"] {
-    margin-right: 8px;
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-}
+      .series-item input[type="checkbox"] {
+        margin-right: 8px;
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+      }
 
-.weekly-card {
-    background: rgba(25, 32, 56, 0.6);
-    border: 1px solid rgba(0, 217, 255, 0.25);
-    border-radius: 10px;
-    padding: 18px;
-}
+      .weekly-card {
+        background: rgba(25, 32, 56, 0.6);
+        border: 1px solid rgba(0, 217, 255, 0.25);
+        border-radius: 10px;
+        padding: 18px;
+      }
 
-.weekly-card h4 {
-    color: #ffffff;
-    margin: 0 0 10px 0;
-    font-size: 1.1em;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(0, 217, 255, 0.2);
-}
+      .weekly-card h4 {
+        color: #ffffff;
+        margin: 0 0 10px 0;
+        font-size: 1.1em;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+      }
 
-.weekly-card.current-day-highlight {
-    border: 2px solid #00d9ff;
-    background: rgba(0, 217, 255, 0.1);
-}
+      .weekly-card.current-day-highlight {
+        border: 2px solid #00d9ff;
+        background: rgba(0, 217, 255, 0.1);
+      }
 
-#bitacora-list li {
-    background: rgba(25, 32, 56, 0.6);
-    padding: 18px 20px;
-    margin-bottom: 12px;
-    border-radius: 10px;
-    border-left: 3px solid #00d9ff;
-}
+      #bitacora-list li {
+        background: rgba(25, 32, 56, 0.6);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        border-radius: 10px;
+        border-left: 3px solid #00d9ff;
+      }
 
-#bitacora-list li strong {
-    color: #00d9ff;
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
+      #bitacora-list li strong {
+        color: #00d9ff;
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
 
-#bitacora-list li p {
-    color: #e8eaf6;
-    line-height: 1.6;
-    margin: 0;
-}
+      #bitacora-list li p {
+        color: #e8eaf6;
+        line-height: 1.6;
+        margin: 0;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <button id="btn5min">Notificar en 5 min</button>
 
     <div class="container">
-        <h1>
-            <span id="smart-word">SMART</span>
-            <span id="fit-word">FIT ⚡️ Bitácora</span>
-        </h1>
-        
-        
+      <h1>
+        <span id="smart-word">SMART</span>
+        <span id="fit-word">FIT ⚡️ Bitácora</span>
+      </h1>
 
-        <div id="registrar-tab" class="content-section active">
-            <div class="page-title">
-                <h2>Nueva Sesión</h2>
-            </div>
-
-            <div class="session-info">
-                <div class="info-row">
-                    <label>Fecha</label>
-                    <input type="text" id="fecha" readonly>
-                </div>
-                <div class="info-row">
-                    <label>Día</label>
-                    <input type="text" id="dia-semana" readonly>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <label for="comentarios">Describe tu entrenamiento</label>
-                <textarea id="comentarios" rows="8" placeholder="Ejercicios realizados, series, repeticiones, pesos utilizados, sensaciones durante el entrenamiento..."></textarea>
-            </div>
-
-            <button onclick="registrarSesion()" class="btn-primary">Guardar</button>
+      <div id="registrar-tab" class="content-section active">
+        <div class="page-title">
+          <h2>Nueva Sesión</h2>
         </div>
 
-        
-
-<div id="planeacion-tab" class="content-section">
-            <div class="page-title">
-                <h2 id="planeacion-main-title">Planeación</h2>
-            </div>
-
-            <div class="selector-box">
-                <label>Rutinas disponibles</label>
-                <select id="fitness-idol">
-                    <option value="" disabled selected>Selecciona una rutina</option>
-                    <option value="Carlos Belcast">Carlos Belcast - Fuerza</option>
-                    <option value="Andoni Fitness">Andoni Fitness - Powerbuilding</option>
-                    <option value="Joan Pradells">Joan Pradells - Bodybuilding</option>
-                    <option value="The Saiyan Kiwi">The Saiyan Kiwi - Híbrido</option>
-                    <option value="Vikika Costa">Vikika Costa - Glúteo/Funcional</option>
-                </select>
-                <button onclick="descargarRutinaSeleccionada()" id="descarga-btn" class="btn-primary">Cargar rutina</button>
-            </div>
-
-            <div class="workout-today">
-                <h3 id="current-day-title">Hoy</h3>
-                <div id="daily-routine-content" class="exercises-list"></div>
-            </div>
-
-            <div class="week-plan">
-                <h3>Semana completa</h3>
-                <div id="weekly-overview-cards" class="week-grid"></div>
-            </div>
-            
-            <p id="routine-note" class="plan-note"></p>
+        <div class="session-info">
+          <div class="info-row">
+            <label>Fecha</label>
+            <input type="text" id="fecha" readonly />
+          </div>
+          <div class="info-row">
+            <label>Día</label>
+            <input type="text" id="dia-semana" readonly />
+          </div>
         </div>
 
-        
-
-<div id="bitacora-tab" class="content-section">
-            <div class="page-title">
-                <h2>Historial</h2>
-            </div>
-            <div class="history-list">
-                <ul id="bitacora-list"></ul>
-            </div>
-        </div>
-        
-        
-
-<div id="gemini-tab" class="content-section">
-            <div class="page-title">
-                <h2>Consulta IA</h2>
-            </div>
-
-            <div class="input-group">
-                <label for="gemini-input">Tu pregunta</label>
-                <textarea id="gemini-input" rows="5" placeholder="¿Cómo mejorar mi técnica de sentadilla? ¿Qué comer antes de entrenar? ¿Cómo ganar masa muscular?" onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); askGemini(); }"></textarea>
-                <button onclick="askGemini()" class="btn-primary">Preguntar</button>
-            </div>
-
-            <div class="response-box">
-                <label>Respuesta</label>
-                <div id="gemini-response-area">
-                    <p class="empty-state">Tu respuesta aparecerá aquí</p>
-                </div>
-            </div>
+        <div class="input-group">
+          <label for="comentarios">Describe tu entrenamiento</label>
+          <textarea
+            id="comentarios"
+            rows="8"
+            placeholder="Ejercicios realizados, series, repeticiones, pesos utilizados, sensaciones durante el entrenamiento..."
+          ></textarea>
         </div>
 
-        
+        <button onclick="registrarSesion()" class="btn-primary">Guardar</button>
+      </div>
 
-<div id="coach-ia-tab" class="content-section">
-            <div class="page-title">
-                <h2>Generar Rutina</h2>
-            </div>
-
-            <div class="input-group">
-                <label for="muscle-group">Grupo muscular</label>
-                <input type="text" id="muscle-group" placeholder="Pecho, Piernas, Espalda, Glúteos...">
-                <button onclick="generateRoutine()" class="btn-primary">Generar</button>
-            </div>
-
-            <div class="result-box">
-                <div id="coach-status-area">
-                    <p class="empty-state">Ingresa un grupo muscular para generar ejercicios</p>
-                </div>
-            </div>
+      <div id="planeacion-tab" class="content-section">
+        <div class="page-title">
+          <h2 id="planeacion-main-title">Planeación</h2>
         </div>
+
+        <div class="selector-box">
+          <label>Rutinas disponibles</label>
+          <select id="fitness-idol">
+            <option value="" disabled selected>Selecciona una rutina</option>
+            <option value="Carlos Belcast">Carlos Belcast - Fuerza</option>
+            <option value="Andoni Fitness">
+              Andoni Fitness - Powerbuilding
+            </option>
+            <option value="Joan Pradells">Joan Pradells - Bodybuilding</option>
+            <option value="The Saiyan Kiwi">The Saiyan Kiwi - Híbrido</option>
+            <option value="Vikika Costa">
+              Vikika Costa - Glúteo/Funcional
+            </option>
+          </select>
+          <button
+            onclick="descargarRutinaSeleccionada()"
+            id="descarga-btn"
+            class="btn-primary"
+          >
+            Cargar rutina
+          </button>
+        </div>
+
+        <div class="workout-today">
+          <h3 id="current-day-title">Hoy</h3>
+          <div id="daily-routine-content" class="exercises-list"></div>
+        </div>
+
+        <div class="week-plan">
+          <h3>Semana completa</h3>
+          <div id="weekly-overview-cards" class="week-grid"></div>
+        </div>
+
+        <p id="routine-note" class="plan-note"></p>
+      </div>
+
+      <div id="bitacora-tab" class="content-section">
+        <div class="page-title">
+          <h2>Historial</h2>
+        </div>
+        <div class="history-list">
+          <ul id="bitacora-list"></ul>
+        </div>
+      </div>
+
+      <div id="gemini-tab" class="content-section">
+        <div class="page-title">
+          <h2>Consulta IA</h2>
+        </div>
+
+        <div class="input-group">
+          <label for="gemini-input">Tu pregunta</label>
+          <textarea
+            id="gemini-input"
+            rows="5"
+            placeholder="¿Cómo mejorar mi técnica de sentadilla? ¿Qué comer antes de entrenar? ¿Cómo ganar masa muscular?"
+            onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); askGemini(); }"
+          ></textarea>
+          <button onclick="askGemini()" class="btn-primary">Preguntar</button>
+        </div>
+
+        <div class="response-box">
+          <label>Respuesta</label>
+          <div id="gemini-response-area">
+            <p class="empty-state">Tu respuesta aparecerá aquí</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="coach-ia-tab" class="content-section">
+        <div class="page-title">
+          <h2>Generar Rutina</h2>
+        </div>
+
+        <div class="input-group">
+          <label for="muscle-group">Grupo muscular</label>
+          <input
+            type="text"
+            id="muscle-group"
+            placeholder="Pecho, Piernas, Espalda, Glúteos..."
+          />
+          <button onclick="generateRoutine()" class="btn-primary">
+            Generar
+          </button>
+        </div>
+
+        <div class="result-box">
+          <div id="coach-status-area">
+            <p class="empty-state">
+              Ingresa un grupo muscular para generar ejercicios
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    
-
-<nav class="nav-bar">
-        <button class="nav-button active" onclick="showTab('registrar-tab', this)">
-            <span class="icon">✍️</span>
-            Registrar
-        </button>
-        <button class="nav-button" onclick="showTab('planeacion-tab', this)">
-            <span class="icon">🗓️</span>
-            Planeación
-        </button>
-        <button class="nav-button" onclick="showTab('bitacora-tab', this)">
-            <span class="icon">📚</span>
-            Bitácora
-        </button>
-        <button class="nav-button" onclick="showTab('gemini-tab', this)">
-            <span class="icon">✨</span>
-            Gemini
-        </button>
-        <button class="nav-button" onclick="showTab('coach-ia-tab', this)">
-            <span class="icon">🧠</span>
-            Coach IA
-        </button>
+    <nav class="nav-bar">
+      <button
+        class="nav-button active"
+        onclick="showTab('registrar-tab', this)"
+      >
+        <span class="icon">✍️</span>
+        Registrar
+      </button>
+      <button class="nav-button" onclick="showTab('planeacion-tab', this)">
+        <span class="icon">🗓️</span>
+        Planeación
+      </button>
+      <button class="nav-button" onclick="showTab('bitacora-tab', this)">
+        <span class="icon">📚</span>
+        Bitácora
+      </button>
+      <button class="nav-button" onclick="showTab('gemini-tab', this)">
+        <span class="icon">✨</span>
+        Gemini
+      </button>
+      <button class="nav-button" onclick="showTab('coach-ia-tab', this)">
+        <span class="icon">🧠</span>
+        Coach IA
+      </button>
     </nav>
 
-<script type="module" src="src/main.js"></script>
- 
-</body>
+    <script type="module" src="src/main.js"></script>
+  </body>
 </html>

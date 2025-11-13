@@ -9,17 +9,15 @@ if ('serviceWorker' in navigator) {
     .catch((err) => console.error('❌ Error registrando el SW:', err));
 }
 
-
-
-// Claves para guardar datos en el navegador (localStorage)
+// key localstorgae
 const CLAVE_ALMACENAMIENTO_SESIONES = 'sesionesEntrenamiento';
 const CLAVE_ALMACENAMIENTO_RUTINA = 'miRutinaSemanal';
 
-// URL base para descargar rutinas
+
 const URL_BASE_API = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${"AIzaSyCBpYFtU8QRwYDQnrVBviaYw7alOUlcM4M"}`;
 
 
-// Mapeo de ídolos fitness 
+
 const RUTINAS_DISPONIBLES = {
     "Carlos Belcast": "api/fitness/routines/carlos-belcast",
     "Andoni Fitness": "api/fitness/routines/andoni-fitness/",
@@ -31,9 +29,16 @@ const RUTINAS_DISPONIBLES = {
 // Días de la semana en español
 const DIAS_SEMANA = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
-// ============================================
-// NOTIFICACIONES
-// ============================================
+
+
+
+
+
+
+
+
+
+
 
 document.getElementById("btn5min").addEventListener("click", () => {
     Notification.requestPermission().then(permission => {

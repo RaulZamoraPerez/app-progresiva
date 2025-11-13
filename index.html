@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./icons/favicon.ico">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#0099ff">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="./src/app.css">
+    <title>Bitácora Semanal de Gimnasio - App</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</head>
+<body>
+    <button id="btn5min">Notificar en 5 min</button>
+
+    <div class="container">
+        <h1>
+            <span id="smart-word">SMART</span>
+            <span id="fit-word">FIT ⚡️ Bitácora</span>
+        </h1>
+        
+        
+
+        <div id="registrar-tab" class="content-section active">
+            <div class="page-title">
+                <h2>Nueva Sesión</h2>
+            </div>
+
+            <div class="session-info">
+                <div class="info-row">
+                    <label>Fecha</label>
+                    <input type="text" id="fecha" readonly>
+                </div>
+                <div class="info-row">
+                    <label>Día</label>
+                    <input type="text" id="dia-semana" readonly>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="comentarios">Describe tu entrenamiento</label>
+                <textarea id="comentarios" rows="8" placeholder="Ejercicios realizados, series, repeticiones, pesos utilizados, sensaciones durante el entrenamiento..."></textarea>
+            </div>
+
+            <button onclick="registrarSesion()" class="btn-primary">Guardar</button>
+        </div>
+
+        
+
+<div id="planeacion-tab" class="content-section">
+            <div class="page-title">
+                <h2 id="planeacion-main-title">Planeación</h2>
+            </div>
+
+            <div class="selector-box">
+                <label>Rutinas disponibles</label>
+                <select id="fitness-idol">
+                    <option value="" disabled selected>Selecciona una rutina</option>
+                    <option value="Carlos Belcast">Carlos Belcast - Fuerza</option>
+                    <option value="Andoni Fitness">Andoni Fitness - Powerbuilding</option>
+                    <option value="Joan Pradells">Joan Pradells - Bodybuilding</option>
+                    <option value="The Saiyan Kiwi">The Saiyan Kiwi - Híbrido</option>
+                    <option value="Vikika Costa">Vikika Costa - Glúteo/Funcional</option>
+                </select>
+                <button onclick="descargarRutinaSeleccionada()" id="descarga-btn" class="btn-primary">Cargar rutina</button>
+            </div>
+
+            <div class="workout-today">
+                <h3 id="current-day-title">Hoy</h3>
+                <div id="daily-routine-content" class="exercises-list"></div>
+            </div>
+
+            <div class="week-plan">
+                <h3>Semana completa</h3>
+                <div id="weekly-overview-cards" class="week-grid"></div>
+            </div>
+            
+            <p id="routine-note" class="plan-note"></p>
+        </div>
+
+        
+
+<div id="bitacora-tab" class="content-section">
+            <div class="page-title">
+                <h2>Historial</h2>
+            </div>
+            <div class="history-list">
+                <ul id="bitacora-list"></ul>
+            </div>
+        </div>
+        
+        
+
+<div id="gemini-tab" class="content-section">
+            <div class="page-title">
+                <h2>Consulta IA</h2>
+            </div>
+
+            <div class="input-group">
+                <label for="gemini-input">Tu pregunta</label>
+                <textarea id="gemini-input" rows="5" placeholder="¿Cómo mejorar mi técnica de sentadilla? ¿Qué comer antes de entrenar? ¿Cómo ganar masa muscular?" onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); askGemini(); }"></textarea>
+                <button onclick="askGemini()" class="btn-primary">Preguntar</button>
+            </div>
+
+            <div class="response-box">
+                <label>Respuesta</label>
+                <div id="gemini-response-area">
+                    <p class="empty-state">Tu respuesta aparecerá aquí</p>
+                </div>
+            </div>
+        </div>
+
+        
+
+<div id="coach-ia-tab" class="content-section">
+            <div class="page-title">
+                <h2>Generar Rutina</h2>
+            </div>
+
+            <div class="input-group">
+                <label for="muscle-group">Grupo muscular</label>
+                <input type="text" id="muscle-group" placeholder="Pecho, Piernas, Espalda, Glúteos...">
+                <button onclick="generateRoutine()" class="btn-primary">Generar</button>
+            </div>
+
+            <div class="result-box">
+                <div id="coach-status-area">
+                    <p class="empty-state">Ingresa un grupo muscular para generar ejercicios</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+<nav class="nav-bar">
+        <button class="nav-button active" onclick="showTab('registrar-tab', this)">
+            <span class="icon">✍️</span>
+            Registrar
+        </button>
+        <button class="nav-button" onclick="showTab('planeacion-tab', this)">
+            <span class="icon">🗓️</span>
+            Planeación
+        </button>
+        <button class="nav-button" onclick="showTab('bitacora-tab', this)">
+            <span class="icon">📚</span>
+            Bitácora
+        </button>
+        <button class="nav-button" onclick="showTab('gemini-tab', this)">
+            <span class="icon">✨</span>
+            Gemini
+        </button>
+        <button class="nav-button" onclick="showTab('coach-ia-tab', this)">
+            <span class="icon">🧠</span>
+            Coach IA
+        </button>
+    </nav>
+
+<script type="module" src="src/main.js"></script>
+ 
+</body>
+</html>

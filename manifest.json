@@ -2,22 +2,17 @@
   "name": "SmartFit Bitácora",
   "short_name": "Bitácora",
   "description": "Bitácora de entrenamiento estilo Smart Fit.",
-  "start_url": "./src/index.html",
-  "scope": "./src/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#000000",
-  "theme_color": "#FFE14D",
+  "background_color": "#0a0e27",
+  "theme_color": "#00d9ff",
   "icons": [
     {
-      "src": "icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
     }
   ]
 }

@@ -1,13 +1,9 @@
-const CACHE_NAME = 'smartfit-cache-v1';
+const CACHE_NAME = 'smartfit-cache-v2';
 
 const ASSETS = [
-  './src/index.html',
-  './manifest.json',
-  './src/style.css',
-  './src/app.css',
-  './src/main.js',
-  './icons/icon-192.png',
-  './icons/icon-512.png'
+  '/',
+  '/index.html',
+  '/manifest.json'
 ];
 
 // Evento 'install' → se ejecuta cuando el Service Worker se instala
@@ -16,7 +12,9 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log('[SW] Archivos en caché');
-      return cache.addAll(ASSETS);
+      return cache.addAll(ASSETS).catch(err => {
+        console.error('[SW] Error cacheando archivos:', err);
+      });
     })
   );
   self.skipWaiting(); // Activa el nuevo Service Worker inmediatamente

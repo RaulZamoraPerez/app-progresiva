@@ -1,10 +1,13 @@
 {
-  "name": "gemini api",
-  "short_name": "MiPWA",
-  "start_url": "./index.html",
+  "name": "SmartFit Bitácora",
+  "short_name": "Bitácora",
+  "description": "Bitácora de entrenamiento estilo Smart Fit.",
+  "start_url": "./src/index.html",
+  "scope": "./src/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#317EFB",
+  "orientation": "portrait",
+  "background_color": "#000000",
+  "theme_color": "#FFE14D",
   "icons": [
     {
       "src": "icons/icon-192.png",

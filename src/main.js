@@ -2,6 +2,13 @@
 
 import { preguntarAGemini, generarRutina } from './gemini-service.js';
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('../service-worker.js')
+    .then(() => console.log('✅ Service Worker registrado correctamente'))
+    .catch((err) => console.error('❌ Error registrando el SW:', err));
+}
+
 
 
 // Claves para guardar datos en el navegador (localStorage)

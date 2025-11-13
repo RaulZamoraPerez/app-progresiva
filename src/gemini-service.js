@@ -3,7 +3,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 
-const CLAVE_API = import.meta.env.VITE_GEMINI_API_KEY;
+const CLAVE_API = "AIzaSyCBpYFtU8QRwYDQnrVBviaYw7alOUlcM4M";
 
 // Inicializar la instancia del cliente Gemini
 const ia = new GoogleGenerativeAI(CLAVE_API);

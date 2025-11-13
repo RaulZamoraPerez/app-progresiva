@@ -16,7 +16,7 @@ const CLAVE_ALMACENAMIENTO_SESIONES = 'sesionesEntrenamiento';
 const CLAVE_ALMACENAMIENTO_RUTINA = 'miRutinaSemanal';
 
 // URL base para descargar rutinas
-const URL_BASE_API = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`;
+const URL_BASE_API = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${"AIzaSyCBpYFtU8QRwYDQnrVBviaYw7alOUlcM4M"}`;
 
 
 // Mapeo de ídolos fitness 
